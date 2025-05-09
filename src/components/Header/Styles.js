@@ -13,15 +13,19 @@ export const StyledHeader = styled.header`
   align-items: center;
   color: ${colors.black};
   font-size: 30px;
-`;
 
-export const Menu = styled.nav`
-  display: flex;
-  flex-direction: row;
-  width: 70%;
-  justify-content: space-evenly;
-  font-family: ${fonts.System};
-  visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
+  img {
+    height: 87px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: space-evenly;
+    font-family: ${fonts.System};
+    visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -33,8 +37,4 @@ export const StyledLink = styled(NavLink)`
   &.active {
     text-decoration: underline;
   }
-`;
-
-export const Image = styled.img`
-  height: 87px;
 `;
