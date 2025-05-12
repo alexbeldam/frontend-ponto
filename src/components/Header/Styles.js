@@ -17,15 +17,15 @@ export const StyledHeader = styled.header`
   img {
     height: 87px;
   }
+`;
 
-  nav {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    justify-content: space-evenly;
-    font-family: ${fonts.System};
-    visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
-  }
+export const Menu = styled.nav`
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-evenly;
+  font-family: ${fonts.System};
+  visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
 `;
 
 export const StyledLink = styled(NavLink)`

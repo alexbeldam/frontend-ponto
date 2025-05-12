@@ -1,11 +1,11 @@
-import { StyledHeader, StyledLink } from "./Styles";
+import { StyledHeader, Menu, StyledLink } from "./Styles";
 
 export default function Header({ full = true }) {
   return (
     <StyledHeader>
       <img src='/src/assets/logo.svg' alt='Logo CPE' />
 
-      <nav hidden={!full}>
+      <Menu hidden={!full}>
         <StyledLink to='/' className={({ isActive }) => (isActive ? "active" : "")}>
           HOME
         </StyledLink>
@@ -15,7 +15,7 @@ export default function Header({ full = true }) {
         <StyledLink to='/usuarios' className={({ isActive }) => (isActive ? "active" : "")}>
           USUÁRIOS
         </StyledLink>
-      </nav>
+      </Menu>
     </StyledHeader>
   );
 }
