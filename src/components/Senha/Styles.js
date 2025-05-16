@@ -6,7 +6,6 @@ export const PasswordWrapper = styled.div`
   width: 100%;
 
   input {
-    margin-top: 15px;
     border: none;
     outline: none;
     height: 2.2vw;
