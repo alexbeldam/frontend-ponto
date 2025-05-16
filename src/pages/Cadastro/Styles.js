@@ -1,33 +1,32 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { colors, fonts, breakpoints } from "../../styles/styleVariables";
+import { colors, breakpoints } from "../../styles/styleVariables";
 
 export const Main = styled.main`
   text-align: center;
-  height: 100%;
-  padding-top: 15px;
-`;
-
-export const Container = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 15px;
 
   input {
-    margin-top: 15px;
     border: none;
     outline: none;
     height: 2.2vw;
     border-radius: 25px;
     width: 44vw;
     padding: 15px;
+    margin: 0;
 
     @media (max-width: ${breakpoints.tablet}) {
       font-size: 1.25rem;
@@ -47,7 +46,6 @@ export const Form = styled.form`
   }
 
   #tail {
-    margin-top: 15px;
     color: ${colors.white};
   }
 
@@ -57,11 +55,11 @@ export const Form = styled.form`
     background: none;
     border: none;
     outline: none;
-    margin-top: 15px;
     background-color: ${colors.yellow};
     font-weight: bold;
     border-radius: 10px;
     padding: 5px 15px;
+    margin-top: 20px;
 
     @media (max-width: ${breakpoints.mobile}) {
       font-size: 1.5rem;
