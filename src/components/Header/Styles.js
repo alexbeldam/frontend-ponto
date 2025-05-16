@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { colors, fonts } from "../../styles/styleVariables";
+import { colors, fonts, breakpoints } from "../../styles/styleVariables";
 
 export const StyledHeader = styled.header`
   position: relative;
@@ -17,6 +17,51 @@ export const StyledHeader = styled.header`
   img {
     height: 87px;
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 26px;
+    justify-content: space-between;
+    padding: 0 20px;
+    img {
+      height: 75px;
+    }
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    height: auto;
+    padding: 10px 0;
+    font-size: 24px;
+
+    img {
+      height: 65px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 22px;
+    img {
+      height: 60px;
+    }
+  }
+
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 18px;
+    img {
+      height: 50px;
+    }
+  }
+
+  @media (max-width: ${breakpoints.tinyDevice}) {
+    font-size: 16px;
+    img {
+      height: 45px;
+    }
+  }
+
+  @media (orientation: portrait) {
+    justify-content: space-between;
+  }
 `;
 
 export const Menu = styled.nav`
@@ -26,6 +71,10 @@ export const Menu = styled.nav`
   justify-content: space-evenly;
   font-family: ${fonts.System};
   visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
+
+  @media (orientation: portrait) {
+    display: none;
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -36,5 +85,21 @@ export const StyledLink = styled(NavLink)`
 
   &.active {
     text-decoration: underline;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 0.95em;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 0.9em;
+  }
+
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 0.85em;
+  }
+
+  @media (max-width: ${breakpoints.tinyDevice}) {
+    font-size: 0.8em;
   }
 `;

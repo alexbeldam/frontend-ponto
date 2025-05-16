@@ -1,4 +1,5 @@
 import { StyledHeader, Menu, StyledLink } from "./Styles";
+import { Dropdown } from "../";
 
 export default function Header({ full = true }) {
   return (
@@ -16,6 +17,8 @@ export default function Header({ full = true }) {
           USUÁRIOS
         </StyledLink>
       </Menu>
+
+      <Dropdown hidden={!full} />
     </StyledHeader>
   );
 }

@@ -11,7 +11,7 @@ export const colors = {
     cardBackground: "#111720",
     veryLight: "#d9d9d9",
   },
-  yellow: "#ffd100",
+  yellow: "#FFE712",
   white: "#FFF",
   black: "#000",
   transparent: "rgba(0, 0, 0, 0)",
@@ -30,4 +30,5 @@ export const breakpoints = {
   smallTablet: "800px",
   mobile: "700px",
   smallDevice: "350px",
+  tinyDevice: "280px",
 };
