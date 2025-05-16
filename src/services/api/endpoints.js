@@ -23,3 +23,9 @@ export async function deleteUser(id, body) {
 
   return data;
 }
+
+export async function login(body) {
+  const { data } = api.post(`/login`, body);
+
+  return data;
+}

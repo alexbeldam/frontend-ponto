@@ -49,7 +49,7 @@ export const Form = styled.form`
     color: ${colors.white};
   }
 
-  #submit {
+  #btn {
     cursor: pointer;
     font-size: 2rem;
     background: none;

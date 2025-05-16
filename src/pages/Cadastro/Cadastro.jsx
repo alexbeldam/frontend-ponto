@@ -15,7 +15,7 @@ export default function Cadastro() {
           <p>
             Já tem uma conta? Faça login <StyledLink to='../login'>aqui.</StyledLink>
           </p>
-          <button id='submit'>CRIAR CONTA</button>
+          <button id='btn'>CRIAR CONTA</button>
         </div>
       </Form>
     </Main>
