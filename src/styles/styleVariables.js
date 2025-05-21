@@ -11,6 +11,7 @@ export const colors = {
     cardBackground: "#111720",
     veryLight: "#d9d9d9",
   },
+  red: "#ED254E",
   yellow: "#FFE712",
   white: "#FFF",
   black: "#000",

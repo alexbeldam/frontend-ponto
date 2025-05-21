@@ -1,27 +1,20 @@
-import { PasswordWrapper } from "./Styles";
+import { Container } from "./Styles";
 import React, { useState, forwardRef } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Campo } from "../../components";
 
-const Password = forwardRef(function Password(props, ref) {
+const Senha = forwardRef(function Password(props, ref) {
   const [visible, setVisible] = useState(false);
-  const { name, placeholder, autoComplete, onChange, onBlur } = props;
+  const { error, ...inputProps } = props;
 
   return (
-    <PasswordWrapper>
-      <input
-        type={visible ? "text" : "password"}
-        name={name}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-        ref={ref}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-      <button onClick={() => setVisible(!visible)} type='button'>
+    <Container>
+      <Campo {...inputProps} ref={ref} type={visible ? "text" : "password"} error={error} />
+      <button className={error ? "lower" : ""} onClick={() => setVisible(!visible)} type='button'>
         {visible ? <FiEyeOff /> : <FiEye />}
       </button>
-    </PasswordWrapper>
+    </Container>
   );
 });
 
-export default Password;
+export default Senha;
