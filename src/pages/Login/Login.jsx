@@ -17,8 +17,15 @@ export default function Login() {
   } = useForm({ resolver: zodResolver(loginValidationSchema) });
 
   const { mutate: postLogin, isPending } = useLogin({
-    onSuccess: () => navigate("/"),
-    onError: (err) => toast.error(err.message),
+    onSuccess: () => {
+      navigate("/");
+      toast.success("Bem-vindo(a)!");
+    },
+    onError: (err) => {
+      const { data } = err.response;
+
+      toast.error(data.message);
+    },
   });
 
   function response(data) {

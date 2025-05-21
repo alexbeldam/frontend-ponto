@@ -25,7 +25,11 @@ export default function Cadastro() {
         queryKey: ["usuarios"],
       });
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) => {
+      const { data } = err.response;
+
+      toast.error(data.message);
+    },
   });
 
   function response(data) {
