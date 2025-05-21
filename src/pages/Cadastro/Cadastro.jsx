@@ -1,10 +1,11 @@
 import { Main, Form, StyledLink } from "./Styles";
-import { Senha } from "../../components";
+import { Campo, Senha } from "../../components";
 import { useForm } from "react-hook-form";
 import { useCreateUser } from "../../hooks/usuarios";
 import { useQueryClient } from "@tanstack/react-query";
 import { usuarioValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 export default function Cadastro() {
   const queryClient = useQueryClient();
@@ -18,11 +19,13 @@ export default function Cadastro() {
 
   const { mutate: postUser, isPending } = useCreateUser({
     onSuccess: () => {
+      toast.success("Cadastrado com sucesso");
       reset();
       queryClient.invalidateQueries({
         queryKey: ["usuarios"],
       });
     },
+    onError: (err) => toast.error(err.message),
   });
 
   function response(data) {
@@ -33,14 +36,32 @@ export default function Cadastro() {
     <Main>
       <h1>CADASTRO</h1>
       <Form autoComplete='on' onSubmit={handleSubmit(response)}>
-        <input type='text' placeholder='Nome' {...register("nome")} autoComplete='name' />
-        <input type='email' placeholder='E-mail' {...register("email")} autoComplete='email' />
-        <input type='text' placeholder='Cargo' {...register("cargo")} />
-        <Senha placeholder='Senha' {...register("senha")} autoComplete='new-password' />
+        <Campo
+          type='text'
+          placeholder='Nome'
+          {...register("nome")}
+          autoComplete='name'
+          error={errors.nome}
+        />
+        <Campo
+          type='email'
+          placeholder='E-mail'
+          {...register("email")}
+          autoComplete='email'
+          error={errors.email}
+        />
+        <Campo type='text' placeholder='Cargo' {...register("cargo")} error={errors.cargo} />
+        <Senha
+          placeholder='Senha'
+          {...register("senha")}
+          autoComplete='new-password'
+          error={errors.senha}
+        />
         <Senha
           placeholder='Repita sua senha'
           {...register("confirmar")}
           autoComplete='new-password'
+          error={errors.confirmar}
         />
         <div id='tail'>
           <p>
