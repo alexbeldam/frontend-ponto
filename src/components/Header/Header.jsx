@@ -1,10 +1,19 @@
-import { StyledHeader, Menu, StyledLink } from "./Styles";
+import { StyledHeader, Menu, StyledLink, ClickableLogo } from "./Styles";
 import { Dropdown } from "../";
+import useAuthStore from "../../stores/auth";
 
 export default function Header({ full = true }) {
+  const usuario = useAuthStore((state) => state.usuario);
+
   return (
     <StyledHeader>
-      <img src='/src/assets/logo.svg' alt='Logo CPE' />
+      {full ? (
+        <ClickableLogo to='/'>
+          <img src='/src/assets/logo.svg' alt='Logo CPE' />
+        </ClickableLogo>
+      ) : (
+        <img src='/src/assets/logo.svg' alt='Logo CPE' />
+      )}
 
       <Menu hidden={!full}>
         <StyledLink to='/' className={({ isActive }) => (isActive ? "active" : "")}>
@@ -13,9 +22,11 @@ export default function Header({ full = true }) {
         <StyledLink to='/perfil' className={({ isActive }) => (isActive ? "active" : "")}>
           PERFIL
         </StyledLink>
-        <StyledLink to='/usuarios' className={({ isActive }) => (isActive ? "active" : "")}>
-          USUÁRIOS
-        </StyledLink>
+        {usuario?.permissao && (
+          <StyledLink to='/usuarios' className={({ isActive }) => (isActive ? "active" : "")}>
+            USUÁRIOS
+          </StyledLink>
+        )}
       </Menu>
 
       <Dropdown hidden={!full} />

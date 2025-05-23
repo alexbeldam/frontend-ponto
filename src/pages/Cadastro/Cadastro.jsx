@@ -1,4 +1,4 @@
-import { Main, Form, StyledLink } from "./Styles";
+import { Main, Form } from "./Styles";
 import { Campo, Senha } from "../../components";
 import { useForm } from "react-hook-form";
 import { useCreateUser } from "../../hooks/usuarios";
@@ -6,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { usuarioValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { AuthFooter } from "../../components";
 
 export default function Cadastro() {
   const queryClient = useQueryClient();
@@ -67,12 +68,7 @@ export default function Cadastro() {
           autoComplete='new-password'
           error={errors.confirmar}
         />
-        <div id='tail'>
-          <p>
-            Já tem uma conta? Faça login <StyledLink to='../login'>aqui.</StyledLink>
-          </p>
-          <button id='btn'>CRIAR CONTA</button>
-        </div>
+        <AuthFooter mode='cadastro' />
       </Form>
     </Main>
   );

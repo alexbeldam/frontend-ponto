@@ -1,5 +1,5 @@
 import { Container } from "./Styles";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 const Campo = forwardRef(function Password(props, ref) {
   const { type, name, placeholder, autoComplete, error, onChange, onBlur } = props;

@@ -1,4 +1,4 @@
-import { Main, Form, StyledLink } from "./Styles";
+import { Main, Form } from "./Styles";
 import { Campo, Senha } from "../../components";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hooks/login";
@@ -6,9 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { loginValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { AuthFooter } from "../../components";
+import useAuthStore from "../../stores/auth";
 
 export default function Login() {
   const navigate = useNavigate();
+  const usuario = useAuthStore((state) => state.usuario);
 
   const {
     handleSubmit,
@@ -19,7 +22,7 @@ export default function Login() {
   const { mutate: postLogin, isPending } = useLogin({
     onSuccess: () => {
       navigate("/");
-      toast.success("Bem-vindo(a)!");
+      toast.success(`Bem vindo, ${usuario.nome}`);
     },
     onError: (err) => {
       const { data } = err.response;
@@ -49,12 +52,7 @@ export default function Login() {
           autoComplete='current-password'
           error={errors.senha}
         />
-        <div id='tail'>
-          <p>
-            Não tem login? Faça seu cadastro <StyledLink to='../cadastro'>aqui.</StyledLink>
-          </p>
-          <button id='btn'>ENTRAR</button>
-        </div>
+        <AuthFooter />
       </Form>
     </Main>
   );

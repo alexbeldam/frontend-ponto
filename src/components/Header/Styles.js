@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { colors, fonts, breakpoints } from "../../styles/styleVariables";
 
 export const StyledHeader = styled.header`
@@ -62,6 +62,10 @@ export const StyledHeader = styled.header`
   @media (orientation: portrait) {
     justify-content: space-between;
   }
+`;
+
+export const ClickableLogo = styled(Link)`
+  cursor: pointer;
 `;
 
 export const Menu = styled.nav`
