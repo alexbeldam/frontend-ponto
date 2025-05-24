@@ -14,6 +14,7 @@ export default function Login() {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({ resolver: zodResolver(loginValidationSchema) });
 
