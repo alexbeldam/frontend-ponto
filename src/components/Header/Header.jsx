@@ -9,10 +9,10 @@ export default function Header({ full = true }) {
     <StyledHeader>
       {full ? (
         <ClickableLogo to='/'>
-          <img src='/src/assets/logo.svg' alt='Logo CPE' />
+          <img src='/logo.svg' alt='Logo CPE' />
         </ClickableLogo>
       ) : (
-        <img src='/src/assets/logo.svg' alt='Logo CPE' />
+        <img src='/logo.svg' alt='Logo CPE' />
       )}
 
       <Menu hidden={!full}>
