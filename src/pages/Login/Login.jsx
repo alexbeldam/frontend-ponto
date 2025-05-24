@@ -7,9 +7,11 @@ import { loginValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { AuthFooter } from "../../components";
+import useAuthStore from "../../stores/auth";
 
 export default function Login() {
   const navigate = useNavigate();
+  const setToken = useAuthStore((state) => state.setToken);
 
   const {
     handleSubmit,
@@ -18,7 +20,7 @@ export default function Login() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(loginValidationSchema) });
 
-  const { mutate: postLogin, isPending } = useLogin({
+  const { mutateAsync: postLogin, isPending } = useLogin({
     onSuccess: () => {
       reset();
       navigate("/");
@@ -30,8 +32,10 @@ export default function Login() {
     },
   });
 
-  function response(data) {
-    postLogin(data);
+  async function response(data) {
+    const { token } = await postLogin(data);
+
+    setToken(token);
   }
 
   return (

@@ -1,5 +1,4 @@
 import api from "./api";
-import useAuthStore from "../../stores/auth";
 
 export async function getUsers() {
   const { data } = await api.get("/usuarios");
@@ -44,11 +43,7 @@ export async function deleteSession(id, body) {
 }
 
 export async function login(body) {
-  const { setToken } = useAuthStore.getState();
   const { data } = await api.post(`/login`, body);
-  const { token } = data;
-
-  setToken(token);
 
   return data;
 }
