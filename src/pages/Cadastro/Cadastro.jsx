@@ -7,9 +7,11 @@ import { usuarioValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { AuthFooter } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 export default function Cadastro() {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -20,11 +22,11 @@ export default function Cadastro() {
 
   const { mutate: postUser, isPending } = useCreateUser({
     onSuccess: () => {
-      toast.success("Cadastrado com sucesso");
       reset();
       queryClient.invalidateQueries({
         queryKey: ["usuarios"],
       });
+      navigate("/login");
     },
     onError: (err) => {
       const { data } = err.response;
