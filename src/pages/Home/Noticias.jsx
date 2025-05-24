@@ -54,7 +54,7 @@ const imagens = [
   },
 ];
 
-const Noticias = function () {
+const Noticias = () => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {

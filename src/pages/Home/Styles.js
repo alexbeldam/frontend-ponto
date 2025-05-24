@@ -1,12 +1,11 @@
 import styled from "styled-components";
+import { colors, breakpoints } from "../../styles/styleVariables";
 
-export const Container = styled.div`
-  margin-top: 30px;
-`;
+export const Container = styled.div``;
 
 export const NoticiasContainer = styled.div`
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto;
 
   .row {
     display: flex;
@@ -41,4 +40,128 @@ export const ImagemContainer = styled.div`
   & + & {
     margin-left: 16px;
   }
+`;
+
+export const SessoesContainer = styled.div`
+  text-align: center;
+  width: 80%;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 auto;
+`;
+
+export const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  background-color: ${colors.grey.cardBackground};
+  table-layout: fixed;
+  font-size: 2rem;
+
+  thead {
+    background-color: ${colors.yellow};
+    color: ${colors.black};
+    font-weight: bold;
+  }
+
+  th {
+    height: 60px;
+  }
+
+  tbody tr:not(:last-child) {
+    border-bottom: 1px solid ${colors.grey.veryLight};
+  }
+
+  td {
+    height: 90px;
+  }
+
+  button {
+    all: unset;
+    font-size: 4rem;
+    color: ${colors.grey.veryLight};
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 1.8rem;
+    button {
+      font-size: 3.5rem;
+    }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.6rem;
+    button {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 1.4rem;
+    button {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.2rem;
+    button {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 1rem;
+    button {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (max-width: ${breakpoints.tinyDevice}) {
+    font-size: 0.9rem;
+    button {
+      font-size: 1.4rem;
+    }
+  }
+`;
+
+export const Membro = styled.div`
+  width: 100%;
+  padding-left: 30px;
+  text-align: left;
+
+  p:first-child {
+    color: ${colors.white};
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    padding-left: 25px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding-left: 20px;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    padding-left: 15px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding-left: 10px;
+  }
+
+  @media (max-width: ${breakpoints.smallDevice}) {
+    padding-left: 8px;
+  }
+
+  @media (max-width: ${breakpoints.tinyDevice}) {
+    padding-left: 5px;
+  }
+`;
+
+export const Tempo = styled.div`
+  border-radius: 6px;
+  border: 1px solid ${colors.yellow};
+  width: fit-content;
+  padding: 2px 5px;
+  margin: 0 auto;
 `;
