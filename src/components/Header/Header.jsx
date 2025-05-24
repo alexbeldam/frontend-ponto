@@ -29,7 +29,7 @@ export default function Header({ full = true }) {
         )}
       </Menu>
 
-      <Dropdown hidden={!full} />
+      <Dropdown hidden={!full} usuario={usuario} />
     </StyledHeader>
   );
 }
