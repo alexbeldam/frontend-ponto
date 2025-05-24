@@ -25,6 +25,24 @@ export async function deleteUser(id, body) {
   return data;
 }
 
+export async function getSessions() {
+  const { data } = await api.get("/sessoes");
+
+  return data;
+}
+
+export async function createSession(body) {
+  const { data } = await api.post("/sessoes", body);
+
+  return data;
+}
+
+export async function deleteSession(id, body) {
+  const { data } = await api.delete(`/sessoes/${id}`, body);
+
+  return data;
+}
+
 export async function login(body) {
   const { setToken } = useAuthStore.getState();
   const { data } = await api.post(`/login`, body);
