@@ -50,7 +50,7 @@ const imagens = [
   },
   {
     src: "https://miro.medium.com/v2/resize:fit:1400/1*6zRpkVumQDRUK5GQ2oY9hQ.jpeg",
-    alt: "Minions",
+    alt: "Meu casal",
   },
 ];
 
