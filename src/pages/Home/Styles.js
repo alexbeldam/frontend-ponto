@@ -165,3 +165,10 @@ export const Tempo = styled.div`
   padding: 2px 5px;
   margin: 0 auto;
 `;
+
+export const ModalContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10%;
+  margin-bottom: 20px;
+`;
