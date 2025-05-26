@@ -4,8 +4,11 @@ import Duracao from "./Duracao";
 import { useDeleteSession } from "../../hooks/sessoes";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { Botao, Modal } from "../../components/";
 
 export default function Sessoes({ user, data, isLoading }) {
+  const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
 
   const { mutate: deleteSession, isPending } = useDeleteSession({
@@ -19,8 +22,18 @@ export default function Sessoes({ user, data, isLoading }) {
     },
   });
 
-  function handleDelete() {
+  function showModal() {
+    setOpen(true);
+  }
+
+  function handleOk() {
+    setOpen(false);
+
     if (user) deleteSession(user);
+  }
+
+  function handleCancel() {
+    setOpen(false);
   }
 
   return (
@@ -61,7 +74,7 @@ export default function Sessoes({ user, data, isLoading }) {
                 </td>
                 <td>
                   {user === s.id_usuario?._id && (
-                    <button onClick={handleDelete}>
+                    <button onClick={showModal}>
                       <FiTrash />
                     </button>
                   )}
@@ -75,6 +88,14 @@ export default function Sessoes({ user, data, isLoading }) {
           )}
         </tbody>
       </Table>
+      <Modal
+        title='Excluir Sessão'
+        open={open}
+        onCancel={handleCancel}
+        footer={<Botao onClick={handleOk}>EXCLUIR</Botao>}
+      >
+        <p>Tem certeza que você deseja deslogar esse usuário?</p>
+      </Modal>
     </SessoesContainer>
   );
 }

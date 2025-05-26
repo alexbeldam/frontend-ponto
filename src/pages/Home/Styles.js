@@ -47,7 +47,7 @@ export const SessoesContainer = styled.div`
   width: 80%;
   border-radius: 20px;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
 `;
 
 export const Table = styled.table`
