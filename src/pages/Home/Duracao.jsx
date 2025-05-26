@@ -1,7 +1,7 @@
 import { Tempo } from "./Styles";
 import { useEffect, useState } from "react";
 
-const Duracao = ({ startTime }) => {
+export default function Duracao({ startTime }) {
   const [duracao, setDurationTime] = useState();
 
   function handleTime(date) {
@@ -9,8 +9,8 @@ const Duracao = ({ startTime }) => {
     const givenDate = new Date(date).getTime();
     const diffMs = now - givenDate;
 
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const diffHours = Math.trunc(diffMs / (1000 * 60 * 60));
+    const diffMinutes = Math.trunc((diffMs % (1000 * 60 * 60)) / (1000 * 60));
 
     const hourFormatted = diffHours.toString().padStart(2, "0");
     const minuteFormatted = diffMinutes.toString().padStart(2, "0");
@@ -31,6 +31,4 @@ const Duracao = ({ startTime }) => {
   }, []);
 
   return <Tempo>{duracao}</Tempo>;
-};
-
-export default Duracao;
+}

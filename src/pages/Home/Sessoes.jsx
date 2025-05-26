@@ -1,19 +1,28 @@
-import { useGetSessions } from "../../hooks/sessoes";
 import { SessoesContainer, Table, Membro, Tempo } from "./Styles";
 import { FiTrash } from "react-icons/fi";
-import useAuthStore from "../../stores/auth";
 import Duracao from "./Duracao";
+import { useDeleteSession } from "../../hooks/sessoes";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
-const Sessoes = () => {
-  const usuario = useAuthStore((state) => state.usuario);
-  const { data, isLoading } = useGetSessions({});
+export default function Sessoes({ user, data, isLoading, onSessionDeleted }) {
+  const queryClient = useQueryClient();
 
-  if (isLoading)
-    return (
-      <SessoesContainer>
-        <p>Carregando...</p>
-      </SessoesContainer>
-    );
+  const { mutate: deleteSession, isPending } = useDeleteSession({
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["sessoes"] });
+      onSessionDeleted?.();
+    },
+    onError: (err) => {
+      const { data } = err.response;
+
+      toast.error(data.message);
+    },
+  });
+
+  function handleDelete() {
+    if (user) deleteSession(user);
+  }
 
   return (
     <SessoesContainer>
@@ -27,7 +36,11 @@ const Sessoes = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.sessoes?.length ? (
+          {isLoading ? (
+            <tr>
+              <td colSpan={4}>Carregando...</td>
+            </tr>
+          ) : data?.sessoes?.length ? (
             data.sessoes.map((s) => (
               <tr key={s._id}>
                 <td>
@@ -48,8 +61,8 @@ const Sessoes = () => {
                   <Duracao startTime={s.createdAt} />
                 </td>
                 <td>
-                  {usuario?.nome === s.id_usuario?.nome && (
-                    <button>
+                  {user === s.id_usuario?._id && (
+                    <button onClick={handleDelete}>
                       <FiTrash />
                     </button>
                   )}
@@ -65,6 +78,4 @@ const Sessoes = () => {
       </Table>
     </SessoesContainer>
   );
-};
-
-export default Sessoes;
+}

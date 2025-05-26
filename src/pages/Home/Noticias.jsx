@@ -54,7 +54,7 @@ const imagens = [
   },
 ];
 
-const Noticias = () => {
+export default function Noticias() {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -95,6 +95,4 @@ const Noticias = () => {
       </Carousel>
     </NoticiasContainer>
   );
-};
-
-export default Noticias;
+}

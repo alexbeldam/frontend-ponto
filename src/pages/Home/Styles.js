@@ -77,8 +77,14 @@ export const Table = styled.table`
 
   button {
     all: unset;
+    cursor: pointer;
     font-size: 4rem;
     color: ${colors.grey.veryLight};
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   @media (max-width: ${breakpoints.desktop}) {

@@ -18,8 +18,8 @@ export async function updateUser(id, body) {
   return data;
 }
 
-export async function deleteUser(id, body) {
-  const { data } = await api.delete(`/usuarios/${id}`, body);
+export async function deleteUser(id) {
+  const { data } = await api.delete(`/usuarios/${id}`);
 
   return data;
 }
@@ -36,8 +36,8 @@ export async function createSession(body) {
   return data;
 }
 
-export async function deleteSession(id, body) {
-  const { data } = await api.delete(`/sessoes/${id}`, body);
+export async function deleteSession(id) {
+  const { data } = await api.delete(`/sessoes/${id}`);
 
   return data;
 }
