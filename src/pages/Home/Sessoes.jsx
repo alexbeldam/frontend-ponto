@@ -5,13 +5,12 @@ import { useDeleteSession } from "../../hooks/sessoes";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
-export default function Sessoes({ user, data, isLoading, onSessionDeleted }) {
+export default function Sessoes({ user, data, isLoading }) {
   const queryClient = useQueryClient();
 
   const { mutate: deleteSession, isPending } = useDeleteSession({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["sessoes"] });
-      onSessionDeleted?.();
     },
     onError: (err) => {
       const { data } = err.response;
