@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FiSearch, FiEdit } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { colors, breakpoints } from "../../styles/styleVariables";
 
 export const Container = styled.div`
