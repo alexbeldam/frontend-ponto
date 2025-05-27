@@ -20,7 +20,7 @@ export function useCreateUser({ onSuccess = () => {}, onError = () => {} }) {
 
 export function useUpdateUser({ onSuccess = () => {}, onError = () => {} }) {
   return useMutation({
-    mutationFn: updateUser,
+    mutationFn: ({ id, dados }) => updateUser(id, dados),
     onSuccess,
     onError,
   });

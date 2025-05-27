@@ -14,32 +14,29 @@ export const Container = styled.div`
 export const ModalContainer = styled.div`
   background-color: ${colors.white};
   color: ${colors.black};
-  max-width: 500px;
-  min-width: 20%;
+  max-width: 250px;
   border-radius: 20px;
   overflow: hidden;
   text-align: center;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+  font-size: 1.4rem;
 
   @media (max-width: ${breakpoints.smallTablet}) {
-    max-width: 450px;
-    min-width: 30%;
+    font-size: 1.3rem;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    max-width: 380px;
-    min-width: 40%;
+    font-size: 1.2rem;
   }
 
   @media (max-width: ${breakpoints.smallDevice}) {
-    max-width: 320px;
-    min-width: 50%;
+    font-size: 1.1rem;
+    max-width: 200px;
   }
 
   @media (max-width: ${breakpoints.tinyDevice}) {
-    max-width: 90vw;
-    min-width: auto;
     margin: 0 10px;
+    font-size: 1rem;
   }
 `;
 
