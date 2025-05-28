@@ -1,15 +1,23 @@
 import { SessoesContainer, Table, Membro, Tempo } from "./Styles";
 import { FiTrash } from "react-icons/fi";
-import Duracao from "./Duracao";
 import { useDeleteSession } from "../../hooks/sessoes";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Botao, Modal } from "../../components/";
 
 export default function Sessoes({ user, data, isLoading }) {
+  const [now, setNow] = useState();
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    setNow(Date.now());
+
+    const interval = setInterval(() => setNow(Date.now()), 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const { mutate: deleteSession, isPending } = useDeleteSession({
     onSuccess: () => {
@@ -34,6 +42,20 @@ export default function Sessoes({ user, data, isLoading }) {
 
   function handleCancel() {
     setOpen(false);
+  }
+
+  function duration(start) {
+    const data = new Date(start);
+    const diffMs = now - data;
+
+    const hours = Math.trunc(diffMs / 3600000)
+      .toString()
+      .padStart(2, "0");
+    const minutes = Math.trunc((diffMs % 3600000) / 60000)
+      .toString()
+      .padStart(2, "0");
+
+    return `${hours}:${minutes}`;
   }
 
   return (
@@ -70,7 +92,7 @@ export default function Sessoes({ user, data, isLoading }) {
                   </Tempo>
                 </td>
                 <td>
-                  <Duracao startTime={s.createdAt} />
+                  <Tempo>{duration(s.createdAt)}</Tempo>
                 </td>
                 <td>
                   {user === s.id_usuario?._id && (

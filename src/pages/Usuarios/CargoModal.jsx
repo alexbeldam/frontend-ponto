@@ -7,8 +7,8 @@ import { Campo } from "../../components";
 import { useForm } from "react-hook-form";
 import { cargoValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Editar from "./Editar";
-import { CargoContainer } from "./Styles";
+import { CargoContainer, EditButton, IconWrapper } from "./Styles";
+import { FiEdit } from "react-icons/fi";
 
 export default function CargoModal({ id, cargo }) {
   const [open, setOpen] = useState(false);
@@ -49,7 +49,12 @@ export default function CargoModal({ id, cargo }) {
 
   return (
     <CargoContainer>
-      <Editar onClick={showModal} current={cargo} />
+      <EditButton onClick={showModal}>
+        {cargo}
+        <IconWrapper>
+          <FiEdit />
+        </IconWrapper>
+      </EditButton>
       <Modal
         title='Editar Cargo'
         open={open}
