@@ -4,10 +4,15 @@ import Sessoes from "./Sessoes";
 import SessoesModal from "./SessoesModal";
 import useAuthStore from "../../stores/auth";
 import { useGetSessions } from "../../hooks/sessoes";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const usuario = useAuthStore((state) => state.usuario);
-  const { data, isLoading } = useGetSessions({});
+  const { data, isLoading } = useGetSessions({
+    onError: (err) => {
+      if (err.status === 403) toast.error("Sessão expirada. Refaça o login.");
+    },
+  });
 
   const hasActiveSession = data?.sessoes?.some((s) => s.id_usuario?._id === usuario?._id);
 

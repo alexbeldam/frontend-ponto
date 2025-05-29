@@ -26,7 +26,7 @@ export default function Sessoes({ user, data, isLoading }) {
     onError: (err) => {
       const { data } = err.response;
 
-      toast.error(data.message);
+      toast.error(err.status === 403 ? "Sessão expirada. Refaça o login." : data.message);
     },
   });
 

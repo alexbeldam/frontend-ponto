@@ -7,7 +7,11 @@ import PermissaoModal from "./PermissaoModal";
 
 export default function Tabela({ filter }) {
   const usuario = useAuthStore((state) => state.usuario);
-  const { data, isLoading } = useGetUsers({});
+  const { data, isLoading } = useGetUsers({
+    onError: (err) => {
+      if (err.status === 403) toast.error("Sessão expirada. Refaça o login.");
+    },
+  });
 
   const removerDiacriticos = (texto) =>
     texto

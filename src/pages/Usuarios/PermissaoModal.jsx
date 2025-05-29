@@ -19,7 +19,7 @@ export default function PermissaoModal({ id, permissao }) {
     onError: (err) => {
       const { data } = err.response;
 
-      toast.error(data.message);
+      toast.error(err.status === 403 ? "Sessão expirada. Refaça o login." : data.message);
     },
   });
 
