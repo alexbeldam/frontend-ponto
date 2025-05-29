@@ -1,30 +1,25 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { colors, breakpoints } from "../../styles/styleVariables";
+import { colors } from "../../styles/styleVariables";
 
 export const Container = styled.div`
   color: ${colors.white};
+  font-size: clamp(1.2rem, 2vw, 2rem);
 
   button {
     cursor: pointer;
-    font-size: 2rem;
-    background: none;
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    background-color: ${colors.yellow};
     border: none;
     outline: none;
-    background-color: ${colors.yellow};
     font-weight: bold;
     border-radius: 10px;
-    padding: 5px 15px;
+    padding: clamp(4px, 0.8vw, 6px) clamp(10px, 2vw, 15px);
     margin-top: 20px;
+    transition: background-color 0.2s ease, filter 0.2s ease;
 
-    @media (max-width: ${breakpoints.mobile}) {
-      font-size: 1.5rem;
-      padding: 5px 10px;
-    }
-
-    @media (max-width: ${breakpoints.smallDevice}) {
-      font-size: 1.2rem;
-      padding: 4px 8px;
+    &:hover {
+      filter: brightness(0.85);
     }
   }
 `;
@@ -32,8 +27,11 @@ export const Container = styled.div`
 export const StyledLink = styled(Link)`
   color: ${colors.yellow};
   text-decoration: none;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  transition: background-color 0.2s ease, filter 0.2s ease;
 
   &:hover {
     text-decoration: underline;
+    filter: brightness(0.85);
   }
 `;

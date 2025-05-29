@@ -12,40 +12,32 @@ export const PesquisaContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 75%;
-  gap: 2rem;
+  gap: 1rem;
   margin: 20px auto 0 auto;
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
 
   div:first-child {
     position: relative;
     flex: 1;
   }
 
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.25rem;
-  }
-
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.15rem;
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 1.05rem;
-  }
-
-  @media (max-width: ${breakpoints.tinyDevice}) {
-    font-size: 1rem;
+    width: 95%;
   }
 `;
 
 export const SearchBar = styled.input`
   border: none;
   outline: none;
-  height: 2.2vw;
-  border-radius: 25px;
-  padding: 1rem;
-  line-height: 2.2vw;
-  padding-left: 36px;
+  height: clamp(3rem, 4.5vw, 4rem);
   width: 100%;
+  border-radius: 25px;
+  padding: 0 1.2rem;
+  padding-left: 36px;
 `;
 
 export const Lupa = styled(FiSearch)`
@@ -199,12 +191,12 @@ export const FilterButton = styled.button`
 `;
 
 export const FilterIcon = styled(MdFilterAlt)`
-  height: 2vw;
+  height: clamp(2.727rem, 4.09vw, 3.636rem);
   width: auto;
 `;
 
 export const FilterOffIcon = styled(MdFilterAltOff)`
-  height: 2vw;
+  height: clamp(2.727rem, 4.09vw, 3.636rem);
   width: auto;
 `;
 
@@ -263,6 +255,10 @@ export const SelectGroup = styled.div`
 
   &:last-of-type {
     margin-bottom: 2rem;
+  }
+
+  &.noMargin {
+    margin-bottom: 0;
   }
 `;
 

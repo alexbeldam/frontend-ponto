@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles/styleVariables";
 
 export const Main = styled.main`
   text-align: center;
@@ -7,40 +6,23 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  min-height: 100%;
   flex-direction: column;
-  gap: 10px;
+  gap: 2rem;
+  padding: 2rem;
+
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-
-  input {
-    border: none;
-    outline: none;
-    height: 2.2vw;
-    border-radius: 25px;
-    width: 44vw;
-    padding: 15px;
-    margin: 0;
-
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 1.25rem;
-    }
-
-    @media (max-width: ${breakpoints.mobile}) {
-      font-size: 1.15rem;
-    }
-
-    @media (max-width: ${breakpoints.smallDevice}) {
-      font-size: 1.05rem;
-    }
-
-    @media (max-width: ${breakpoints.tinyDevice}) {
-      font-size: 1rem;
-    }
-  }
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 1rem;
 `;

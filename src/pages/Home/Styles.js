@@ -14,6 +14,15 @@ export const NoticiasContainer = styled.div`
     max-height: 342px;
     align-items: center;
     justify-content: space-around;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      flex-direction: column;
+      max-height: none;
+    }
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 95%;
   }
 `;
 
@@ -48,6 +57,10 @@ export const SessoesContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
   margin: 0 auto 20px auto;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 95%;
+  }
 `;
 
 export const Table = styled.table`
@@ -139,28 +152,14 @@ export const Membro = styled.div`
     color: ${colors.white};
   }
 
-  @media (max-width: ${breakpoints.desktop}) {
-    padding-left: 25px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    padding-left: 20px;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}) {
-    padding-left: 15px;
-  }
-
   @media (max-width: ${breakpoints.mobile}) {
     padding-left: 10px;
+    font-size: 1.2rem;
   }
 
   @media (max-width: ${breakpoints.smallDevice}) {
     padding-left: 8px;
-  }
-
-  @media (max-width: ${breakpoints.tinyDevice}) {
-    padding-left: 5px;
+    font-size: 1rem;
   }
 `;
 

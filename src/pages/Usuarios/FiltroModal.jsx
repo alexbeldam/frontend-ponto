@@ -98,7 +98,7 @@ export default function FiltroModal({ filters, setFilters, defaultFilters }) {
           </OrdemButton>
         </SelectRowGroup>
 
-        <SelectGroup>
+        <SelectGroup className={temFiltroAtivo ? "noMargin" : ""}>
           <Label htmlFor='access'>Filtrar por acesso:</Label>
           <Select id='access' value={filters.access} onChange={handlePermissaoChange}>
             <option value='all'>Todos</option>

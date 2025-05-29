@@ -14,29 +14,29 @@ export const Container = styled.div`
 export const ModalContainer = styled.div`
   background-color: ${colors.white};
   color: ${colors.black};
-  max-width: 250px;
+  width: fit-content;
+  max-width: 35vw;
   border-radius: 20px;
   overflow: hidden;
   text-align: center;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
-  font-size: 1.4rem;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  padding: 16px;
 
   @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 1.3rem;
+    max-width: 60vw;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.2rem;
+    max-width: 80vw;
   }
 
   @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 1.1rem;
-    max-width: 200px;
+    max-width: 90vw;
   }
 
   @media (max-width: ${breakpoints.tinyDevice}) {
-    margin: 0 10px;
-    font-size: 1rem;
+    max-width: 95vw;
   }
 `;
 
@@ -50,25 +50,9 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalTitle = styled.h2`
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: bold;
+  font-size: clamp(2.1rem, 4vw, 2.5rem);
   color: ${colors.black};
-
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 18px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 16px;
-  }
-
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 15px;
-  }
-
-  @media (max-width: ${breakpoints.tinyDevice}) {
-    font-size: 14px;
-  }
 `;
 
 export const CloseButton = styled.button`

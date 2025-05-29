@@ -1,61 +1,29 @@
 import styled from "styled-components";
-import { colors, breakpoints } from "../../styles/styleVariables";
 
 export const Container = styled.div`
   position: relative;
-  width: 44vw;
+  width: clamp(260px, 50vw, 460px);
 
   button {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
     background: none;
     border: none;
     outline: none;
     position: absolute;
     padding-top: 5px;
     right: 1rem;
-    top: calc(50%);
+    top: 50%;
     transform: translateY(-50%);
-    color: ${colors.grey};
+    transition: opacity 0.2s ease;
+    opacity: 0.5;
 
     &:hover {
-      color: ${colors.black};
+      opacity: 1;
     }
 
     &.lower {
-      transform: translateY(calc(-50% + 1.3rem));
-
-      @media (max-width: ${breakpoints.tablet}) {
-        transform: translateY(calc(-50% + 1.25rem));
-      }
-
-      @media (max-width: ${breakpoints.mobile}) {
-        transform: translateY(calc(-50% + 1.15rem));
-      }
-
-      @media (max-width: ${breakpoints.smallDevice}) {
-        transform: translateY(calc(-50% + 1.05rem));
-      }
-
-      @media (max-width: ${breakpoints.tinyDevice}) {
-        transform: translateY(calc(-50% + 1rem));
-      }
-    }
-
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 1.95rem;
-    }
-
-    @media (max-width: ${breakpoints.mobile}) {
-      font-size: 1.85rem;
-    }
-
-    @media (max-width: ${breakpoints.smallDevice}) {
-      font-size: 1.75rem;
-    }
-
-    @media (max-width: ${breakpoints.tinyDevice}) {
-      font-size: 1.7rem;
+      transform: translateY(calc(-50% + clamp(1rem, 2.5vw, 1.3rem)));
     }
   }
 `;
