@@ -12,8 +12,6 @@ export default function AppProvider() {
       const decoded = jwtDecode(token);
       const currentTime = Date.now() / 1000;
 
-      console.log(decoded.exp);
-
       if (decoded.exp < currentTime) clearAuth();
     } catch (error) {
       clearAuth();
