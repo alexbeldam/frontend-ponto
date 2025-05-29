@@ -5,12 +5,12 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { Campo } from "../../components";
 import { useForm } from "react-hook-form";
-import { cargoValidationSchema } from "./utils";
+import { editValidationSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CargoContainer, EditButton, IconWrapper } from "./Styles";
+import { EditContainer, EditButton, ModalContent } from "./Styles";
 import { FiEdit } from "react-icons/fi";
 
-export default function CargoModal({ id, cargo }) {
+export default function EditarModal({ id, nome, cargo }) {
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
 
@@ -33,9 +33,15 @@ export default function CargoModal({ id, cargo }) {
     register,
     reset,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(cargoValidationSchema) });
+  } = useForm({ resolver: zodResolver(editValidationSchema) });
 
   function response(data) {
+    if (data.cargo === null || data.cargo === undefined || data.cargo.trim() === "") {
+      handleCancel();
+      reset();
+      return;
+    }
+
     putUser({ id, dados: data });
   }
 
@@ -48,23 +54,30 @@ export default function CargoModal({ id, cargo }) {
   }
 
   return (
-    <CargoContainer>
+    <EditContainer>
       <EditButton onClick={showModal}>
-        {cargo}
-        <IconWrapper>
-          <FiEdit />
-        </IconWrapper>
+        <FiEdit />
       </EditButton>
+
       <Modal
-        title='Editar Cargo'
+        title={`Editar ${nome}`}
         open={open}
         onCancel={handleCancel}
-        footer={<Botao form='cargo'>SALVAR</Botao>}
+        footer={<Botao form='user'>SALVAR</Botao>}
       >
-        <form id='cargo' onSubmit={handleSubmit(response)}>
-          <Campo type='text' placeholder='Novo Cargo' {...register("cargo")} error={errors.cargo} />
-        </form>
+        <ModalContent>
+          <p>Cargo: {cargo}</p>
+
+          <form id='user' onSubmit={handleSubmit(response)}>
+            <Campo
+              type='text'
+              placeholder='Novo Cargo'
+              {...register("cargo")}
+              error={errors.cargo}
+            />
+          </form>
+        </ModalContent>
       </Modal>
-    </CargoContainer>
+    </EditContainer>
   );
 }

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useUpdateUser } from "../../hooks/usuarios";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
-import { FiKey, FiLock } from "react-icons/fi";
-import { EditButton, IconWrapper } from "./Styles";
+import { FiKey } from "react-icons/fi";
+import { EditButton } from "./Styles";
 
 export default function PermissaoModal({ id, permissao }) {
   const [open, setOpen] = useState(false);
@@ -44,11 +44,10 @@ export default function PermissaoModal({ id, permissao }) {
   return (
     <div>
       <EditButton onClick={showModal}>
-        {permissao ? "Admin" : "Comum"}
-        <IconWrapper>{permissao ? <FiLock /> : <FiKey />}</IconWrapper>
+        <FiKey />
       </EditButton>
       <Modal
-        title='Editar Permissão'
+        title={permissao ? "Remover Acesso" : "Conceder Acesso"}
         open={open}
         onCancel={handleCancel}
         footer={<Botao onClick={handleOk}>CONFIRMAR</Botao>}

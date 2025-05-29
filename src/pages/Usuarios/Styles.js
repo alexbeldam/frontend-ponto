@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
+import { MdFilterAlt, MdFilterAltOff } from "react-icons/md";
 import { colors, breakpoints } from "../../styles/styleVariables";
 
 export const Container = styled.div`
@@ -10,20 +11,41 @@ export const Container = styled.div`
 export const PesquisaContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  width: 75%;
+  gap: 2rem;
+  margin: 20px auto 0 auto;
 
-  div {
+  div:first-child {
     position: relative;
-    width: 75%;
+    flex: 1;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.25rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.15rem;
+  }
+
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: ${breakpoints.tinyDevice}) {
+    font-size: 1rem;
   }
 `;
 
 export const SearchBar = styled.input`
+  border: none;
+  outline: none;
+  height: 2.2vw;
+  border-radius: 25px;
+  padding: 1rem;
+  line-height: 2.2vw;
+  padding-left: 36px;
   width: 100%;
-  padding: 5px 6px 5px 36px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  font-size: 14px;
 `;
 
 export const Lupa = styled(FiSearch)`
@@ -33,6 +55,26 @@ export const Lupa = styled(FiSearch)`
   transform: translateY(-50%);
   color: #666;
   pointer-events: none;
+`;
+
+export const XisButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  color: #666;
+  line-height: 0;
+  padding: 2px;
+  border-radius: 6px;
+
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${colors.grey.veryLight};
+  }
 `;
 
 export const TabelaContainer = styled.div`
@@ -100,21 +142,147 @@ export const DeleteButton = styled.button`
 export const EditButton = styled.button`
   all: unset;
   cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
 
   &:hover {
     transform: scale(1.1);
   }
 `;
 
-export const IconWrapper = styled.span`
-  display: inline-flex;
-  align-items: center;
-  margin-left: 1rem;
-`;
-
-export const CargoContainer = styled.div`
+export const EditContainer = styled.div`
   input {
     background-color: ${colors.grey.veryLight};
     width: 100%;
+  }
+`;
+
+export const ModalContent = styled.div`
+  height: 100%;
+  width: 100%;
+
+  p {
+    margin-bottom: 1rem;
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  input {
+    background-color: ${colors.white};
+    border: 1px solid ${colors.black};
+    width: 100%;
+  }
+`;
+
+export const Acoes = styled.span`
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+`;
+
+export const FilterContainer = styled.div`
+  color: ${colors.white};
+  height: 100%;
+`;
+
+export const FilterButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const FilterIcon = styled(MdFilterAlt)`
+  height: 2vw;
+  width: auto;
+`;
+
+export const FilterOffIcon = styled(MdFilterAltOff)`
+  height: 2vw;
+  width: auto;
+`;
+
+export const Select = styled.select`
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid ${colors.grey.light};
+  font-size: 1.4rem;
+  background-color: ${colors.white};
+  color: ${colors.black};
+  width: 100%;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const OrdemButton = styled.button`
+  all: unset;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: ${colors.black};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${colors.grey.veryLight};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.4rem;
+  }
+`;
+
+export const Label = styled.label`
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: ${colors.black};
+  font-size: 1.3rem;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const SelectGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+`;
+
+export const SelectRowGroup = styled(SelectGroup)`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  ${Label} {
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+
+  ${Select} {
+    flex: 1;
+    width: fit-content;
+  }
+
+  ${OrdemButton} {
+    margin-left: 10px;
+    flex-shrink: 0;
   }
 `;

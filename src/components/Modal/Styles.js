@@ -95,7 +95,7 @@ export const CloseButton = styled.button`
 `;
 
 export const ModalContent = styled.div`
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 export const ModalFooter = styled.div`

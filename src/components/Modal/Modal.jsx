@@ -10,7 +10,7 @@ import {
 } from "./Styles";
 import { Botao } from "../";
 
-export default function Modal({ open, title, onOk, onCancel, footer, children }) {
+export default function Modal({ open, title, onOk, onCancel, hasFooter = true, footer, children }) {
   if (!open) return null;
 
   return (
@@ -24,7 +24,7 @@ export default function Modal({ open, title, onOk, onCancel, footer, children })
         </ModalHeader>
         <ModalContent>{children}</ModalContent>
 
-        <ModalFooter>{footer ?? <Botao onClick={onOk}>Ok</Botao>}</ModalFooter>
+        {hasFooter && <ModalFooter>{footer ?? <Botao onClick={onOk}>Ok</Botao>}</ModalFooter>}
       </ModalContainer>
     </Container>
   );
