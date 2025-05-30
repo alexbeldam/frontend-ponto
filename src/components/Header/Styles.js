@@ -14,13 +14,16 @@ export const StyledHeader = styled.header`
   color: ${colors.black};
   font-size: 30px;
 
+  &.minimal {
+    justify-content: flex-start;
+  }
+
   img {
     height: 87px;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 26px;
-    justify-content: space-between;
     padding: 0 20px;
     img {
       height: 75px;
@@ -74,7 +77,6 @@ export const Menu = styled.nav`
   width: 70%;
   justify-content: space-evenly;
   font-family: ${fonts.System};
-  visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
 
   @media (orientation: portrait) {
     display: none;

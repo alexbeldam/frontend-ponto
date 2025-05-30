@@ -6,7 +6,7 @@ export default function Header({ full = true }) {
   const usuario = useAuthStore((state) => state.usuario);
 
   return (
-    <StyledHeader>
+    <StyledHeader className={full ? "" : "minimal"}>
       {full ? (
         <ClickableLogo to='/'>
           <img src='/logo.svg' alt='Logo CPE' />
@@ -15,21 +15,24 @@ export default function Header({ full = true }) {
         <img src='/logo.svg' alt='Logo CPE' />
       )}
 
-      <Menu hidden={!full}>
-        <StyledLink to='/' className={({ isActive }) => (isActive ? "active" : "")}>
-          HOME
-        </StyledLink>
-        <StyledLink to='/perfil' className={({ isActive }) => (isActive ? "active" : "")}>
-          PERFIL
-        </StyledLink>
-        {usuario?.permissao && (
-          <StyledLink to='/usuarios' className={({ isActive }) => (isActive ? "active" : "")}>
-            USUÁRIOS
+      {full && (
+        <Menu>
+          <StyledLink to='/' className={({ isActive }) => (isActive ? "active" : "")}>
+            HOME
           </StyledLink>
-        )}
-      </Menu>
+          <StyledLink to='/perfil' className={({ isActive }) => (isActive ? "active" : "")}>
+            PERFIL
+          </StyledLink>
+          {usuario?.permissao && (
+            <StyledLink to='/usuarios' className={({ isActive }) => (isActive ? "active" : "")}>
+              USUÁRIOS
+            </StyledLink>
+          )}
+          <StyledLink to='/logout'>SAIR</StyledLink>
+        </Menu>
+      )}
 
-      <Dropdown hidden={!full} usuario={usuario} />
+      {full && <Dropdown access={usuario?.permissao} usuario={usuario} />}
     </StyledHeader>
   );
 }

@@ -36,12 +36,12 @@ export const ToggleButton = styled.button`
 `;
 
 export const Nav = styled.nav`
-  display: ${({ open }) => (open ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: 100%;
-  right: 0;
-  background: ${colors.grey.veryLight};
+  right: 0.5rem;
+  background: ${colors.white};
   padding: 0.5em;
   border-radius: 8px;
   z-index: 100;
@@ -51,22 +51,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${colors.black};
   font-family: ${fonts.System};
+  font-size: clamp(1.6rem, 2vw, 2rem);
   cursor: pointer;
   padding: 0.3em 0;
-
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 0.95em;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 0.9em;
-  }
-
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 0.85em;
-  }
-
-  @media (max-width: ${breakpoints.tinyDevice}) {
-    font-size: 0.8em;
-  }
 `;
