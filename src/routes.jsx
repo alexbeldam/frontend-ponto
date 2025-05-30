@@ -6,7 +6,7 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
-import { Home, Login, Cadastro, Perfil, Usuarios } from "./pages";
+import { Home, Login, Cadastro, Perfil, Usuarios, Logout } from "./pages";
 import { FullLayout, MinimalLayout } from "./layouts";
 import useAuthStore from "./stores/auth";
 
@@ -40,6 +40,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<MinimalLayout />}>
         <Route path='login' element={<Login />} />
         <Route path='cadastro' element={<Cadastro />} />
+        <Route path='logout' element={<Logout />} />
       </Route>
     </Route>
   )
