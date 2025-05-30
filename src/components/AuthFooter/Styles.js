@@ -4,11 +4,10 @@ import { colors } from "../../styles/styleVariables";
 
 export const Container = styled.div`
   color: ${colors.white};
-  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
 
   button {
     cursor: pointer;
-    font-size: clamp(1.2rem, 2vw, 2rem);
     background-color: ${colors.yellow};
     border: none;
     outline: none;
@@ -27,7 +26,6 @@ export const Container = styled.div`
 export const StyledLink = styled(Link)`
   color: ${colors.yellow};
   text-decoration: none;
-  font-size: clamp(1.2rem, 2vw, 2rem);
   transition: background-color 0.2s ease, filter 0.2s ease;
 
   &:hover {

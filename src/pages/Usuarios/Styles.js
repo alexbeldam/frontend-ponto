@@ -14,7 +14,7 @@ export const PesquisaContainer = styled.div`
   width: 75%;
   gap: 1rem;
   margin: 20px auto 0 auto;
-  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
 
   div:first-child {
     position: relative;
@@ -33,7 +33,7 @@ export const PesquisaContainer = styled.div`
 export const SearchBar = styled.input`
   border: none;
   outline: none;
-  height: clamp(3rem, 4.5vw, 4rem);
+  height: clamp(2.4rem, 2.8vw, 2.8rem);
   width: 100%;
   border-radius: 25px;
   padding: 0 1.2rem;
@@ -191,12 +191,12 @@ export const FilterButton = styled.button`
 `;
 
 export const FilterIcon = styled(MdFilterAlt)`
-  height: clamp(2.727rem, 4.09vw, 3.636rem);
+  height: clamp(2.18rem, 2.54vw, 2.54rem);
   width: auto;
 `;
 
 export const FilterOffIcon = styled(MdFilterAltOff)`
-  height: clamp(2.727rem, 4.09vw, 3.636rem);
+  height: clamp(2.18rem, 2.54vw, 2.54rem);
   width: auto;
 `;
 
