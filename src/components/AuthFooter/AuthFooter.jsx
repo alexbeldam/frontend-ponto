@@ -1,21 +1,27 @@
 import { Container, StyledLink } from "./Styles";
 
+const content = {
+  login: {
+    textBeforeLink: "Não tem login? Faça seu cadastro",
+    linkTo: "/cadastro",
+    buttonText: "ENTRAR",
+  },
+  cadastro: {
+    textBeforeLink: "Já tem uma conta? Faça login",
+    linkTo: "/login",
+    buttonText: "CRIAR CONTA",
+  },
+};
+
 export default function AuthFooter({ mode = "login" }) {
-  const isLogin = mode === "login";
-
-  const textBeforeLink = isLogin
-    ? "Não tem login? Faça seu cadastro"
-    : "Já tem uma conta? Faça login";
-
-  const linkTo = isLogin ? "/cadastro" : "/login";
-  const buttonText = isLogin ? "ENTRAR" : "CRIAR CONTA";
+  const footerContent = content[mode];
 
   return (
     <Container>
       <p>
-        {textBeforeLink} <StyledLink to={linkTo}>aqui.</StyledLink>
+        {footerContent.textBeforeLink} <StyledLink to={footerContent.linkTo}>aqui.</StyledLink>
       </p>
-      <button>{buttonText}</button>
+      <button>{footerContent.buttonText}</button>
     </Container>
   );
 }

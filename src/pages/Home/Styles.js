@@ -88,58 +88,28 @@ export const Table = styled.table`
     height: 90px;
   }
 
-  button {
-    all: unset;
-    cursor: pointer;
-    font-size: 4rem;
-    color: ${colors.grey.veryLight};
-    transition: transform 0.2s ease, color 0.2s ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
   @media (max-width: ${breakpoints.desktop}) {
     font-size: 1.8rem;
-    button {
-      font-size: 3.5rem;
-    }
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 1.6rem;
-    button {
-      font-size: 3rem;
-    }
   }
 
   @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 1.4rem;
-    button {
-      font-size: 2.5rem;
-    }
   }
 
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1.2rem;
-    button {
-      font-size: 2rem;
-    }
   }
 
   @media (max-width: ${breakpoints.smallDevice}) {
     font-size: 1rem;
-    button {
-      font-size: 1.6rem;
-    }
   }
 
   @media (max-width: ${breakpoints.tinyDevice}) {
     font-size: 0.9rem;
-    button {
-      font-size: 1.4rem;
-    }
   }
 `;
 
@@ -176,4 +146,36 @@ export const ModalContainer = styled.div`
   justify-content: flex-end;
   margin-right: 10%;
   margin-bottom: 20px;
+`;
+
+export const DeleteButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  font-size: 4rem;
+  color: ${colors.grey.veryLight};
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: ${breakpoints.tinyDevice}) {
+    font-size: 1.4rem;
+  }
 `;

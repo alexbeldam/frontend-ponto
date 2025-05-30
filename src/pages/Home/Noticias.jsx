@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useWidth } from "../../hooks/utils";
 import { Carousel } from "react-responsive-carousel";
 import { NoticiasContainer, ImagemContainer } from "./Styles";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -55,15 +55,7 @@ const imagens = [
 ];
 
 export default function Noticias() {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const newsPerSlide = width > 1400 ? 2 : 1;
+  const newsPerSlide = useWidth() > 1400 ? 2 : 1;
 
   const slides = [];
 

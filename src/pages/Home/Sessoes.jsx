@@ -1,48 +1,9 @@
 import { SessoesContainer, Table, Membro, Tempo } from "./Styles";
-import { FiTrash } from "react-icons/fi";
-import { useDeleteSession } from "../../hooks/sessoes";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import { Botao, Modal } from "../../components/";
+import DeleteModal from "./DeleteModal";
+import { useNow } from "../../hooks/utils";
 
 export default function Sessoes({ user, data, isLoading }) {
-  const [now, setNow] = useState();
-  const [open, setOpen] = useState(false);
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    setNow(Date.now());
-
-    const interval = setInterval(() => setNow(Date.now()), 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const { mutate: deleteSession, isPending } = useDeleteSession({
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["sessoes"] });
-    },
-    onError: (err) => {
-      const { data } = err.response;
-
-      toast.error(err.status === 403 ? "Sessão expirada. Refaça o login." : data.message);
-    },
-  });
-
-  function showModal() {
-    setOpen(true);
-  }
-
-  function handleOk() {
-    setOpen(false);
-
-    if (user) deleteSession(user);
-  }
-
-  function handleCancel() {
-    setOpen(false);
-  }
+  const now = useNow();
 
   function duration(start) {
     const data = new Date(start);
@@ -94,13 +55,7 @@ export default function Sessoes({ user, data, isLoading }) {
                 <td>
                   <Tempo>{duration(s.createdAt)}</Tempo>
                 </td>
-                <td>
-                  {user === s.id_usuario?._id && (
-                    <button onClick={showModal}>
-                      <FiTrash />
-                    </button>
-                  )}
-                </td>
+                <td>{user === s.id_usuario?._id && <DeleteModal user={user} />}</td>
               </tr>
             ))
           ) : (
@@ -110,14 +65,6 @@ export default function Sessoes({ user, data, isLoading }) {
           )}
         </tbody>
       </Table>
-      <Modal
-        title='Excluir Sessão'
-        open={open}
-        onCancel={handleCancel}
-        footer={<Botao onClick={handleOk}>EXCLUIR</Botao>}
-      >
-        <p>Tem certeza que você deseja deslogar esse usuário?</p>
-      </Modal>
     </SessoesContainer>
   );
 }

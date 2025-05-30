@@ -7,11 +7,7 @@ import EditarModal from "./EditarModal";
 
 export default function Tabela({ filters }) {
   const usuario = useAuthStore((state) => state.usuario);
-  const { data, isLoading } = useGetUsers({
-    onError: (err) => {
-      if (err.status === 403) toast.error("Sessão expirada. Refaça o login.");
-    },
-  });
+  const { data, isLoading } = useGetUsers({});
 
   const removerDiacriticos = (texto) =>
     texto

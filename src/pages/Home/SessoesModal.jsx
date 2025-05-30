@@ -17,7 +17,7 @@ export default function SessoesModal({ id, nome }) {
     onError: (err) => {
       const { data } = err.response;
 
-      toast.error(err.status === 403 ? "Sessão expirada. Refaça o login." : data.message);
+      if (err.status !== 403) toast.error(data.message);
     },
   });
 

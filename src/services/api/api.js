@@ -1,5 +1,6 @@
 import axios from "axios";
 import useAuthStore from "../../stores/auth";
+import { logout } from "../../utils/logout";
 
 const baseURL = `${import.meta.env.VITE_BACKEND_URL}`;
 
@@ -19,11 +20,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      const { clearAuth } = useAuthStore.getState();
-
-      clearAuth();
-    }
+    if (error.response?.status === 403) logout("Sessão expirada.");
 
     return Promise.reject(error);
   }
