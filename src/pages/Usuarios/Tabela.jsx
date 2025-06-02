@@ -4,10 +4,12 @@ import { TabelaContainer, Table, Acoes } from "./Styles";
 import DeletarModal from "./DeletarModal";
 import PermissaoModal from "./PermissaoModal";
 import EditarModal from "./EditarModal";
+import { useMediaQuery } from "../../hooks/utils";
 
 export default function Tabela({ filters }) {
   const usuario = useAuthStore((state) => state.usuario);
   const { data, isLoading } = useGetUsers({});
+  const isLandscape = useMediaQuery("(orientation: landscape)");
 
   const removerDiacriticos = (texto) =>
     texto
@@ -52,21 +54,21 @@ export default function Tabela({ filters }) {
           <tr>
             <th>Nome</th>
             <th>Cargo</th>
-            <th>Acesso</th>
+            {isLandscape && <th>Acesso</th>}
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           {isLoading ? (
             <tr>
-              <td colSpan={4}>Carregando...</td>
+              <td colSpan={isLandscape ? 4 : 3}>Carregando...</td>
             </tr>
           ) : usuariosFiltrados?.length ? (
             usuariosFiltrados.map((u) => (
               <tr key={u._id}>
                 <td>{u.nome}</td>
                 <td>{u.cargo}</td>
-                <td>{u.permissao ? "Admin" : "Comum"}</td>
+                {isLandscape && <td>{u.permissao ? "Admin" : "Comum"}</td>}
                 <td>
                   <Acoes>
                     <EditarModal id={u._id} nome={u.nome} cargo={u.cargo} />
@@ -78,7 +80,7 @@ export default function Tabela({ filters }) {
             ))
           ) : (
             <tr>
-              <td colSpan={4}>Nenhum usuário encontrado</td>
+              <td colSpan={isLandscape ? 4 : 3}>Nenhum usuário encontrado</td>
             </tr>
           )}
         </tbody>

@@ -1,13 +1,14 @@
 import { SessoesContainer, Table, Membro, Tempo } from "./Styles";
 import DeleteModal from "./DeleteModal";
-import { useNow } from "../../hooks/utils";
+import { useNow, useMediaQuery } from "../../hooks/utils";
 
 export default function Sessoes({ user, data, isLoading }) {
   const now = useNow();
+  const isLandscape = useMediaQuery("(orientation: landscape)");
 
   function duration(start) {
-    const data = new Date(start);
-    const diffMs = now - data;
+    const date = new Date(start);
+    const diffMs = now - date;
 
     const hours = Math.trunc(diffMs / 3600000)
       .toString()
@@ -25,7 +26,7 @@ export default function Sessoes({ user, data, isLoading }) {
         <thead>
           <tr>
             <th>MEMBRO</th>
-            <th>CHEGADA</th>
+            {isLandscape && <th>CHEGADA</th>}
             <th>TEMPO</th>
             <th aria-hidden />
           </tr>
@@ -33,7 +34,7 @@ export default function Sessoes({ user, data, isLoading }) {
         <tbody>
           {isLoading ? (
             <tr>
-              <td colSpan={4}>Carregando...</td>
+              <td colSpan={isLandscape ? 4 : 3}>Carregando...</td>
             </tr>
           ) : data?.sessoes?.length ? (
             data.sessoes.map((s) => (
@@ -44,14 +45,16 @@ export default function Sessoes({ user, data, isLoading }) {
                     <p>{s.id_usuario?.cargo}</p>
                   </Membro>
                 </td>
-                <td>
-                  <Tempo>
-                    {new Date(s.createdAt).toLocaleTimeString("pt-BR", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </Tempo>
-                </td>
+                {isLandscape && (
+                  <td>
+                    <Tempo>
+                      {new Date(s.createdAt).toLocaleTimeString("pt-BR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </Tempo>
+                  </td>
+                )}
                 <td>
                   <Tempo>{duration(s.createdAt)}</Tempo>
                 </td>
@@ -60,7 +63,7 @@ export default function Sessoes({ user, data, isLoading }) {
             ))
           ) : (
             <tr>
-              <td colSpan={4}>Nenhuma sessão ativa</td>
+              <td colSpan={isLandscape ? 4 : 3}>Nenhuma sessão ativa</td>
             </tr>
           )}
         </tbody>
