@@ -49,8 +49,8 @@ const imagens = [
     alt: "Canal de Solicitação de Reinvestimentos",
   },
   {
-    src: "/minion.jpg",
-    alt: "Minion de skate",
+    src: "/reconcentre.jpg",
+    alt: "CPE no 11° Reconcentre",
   },
 ];
 
