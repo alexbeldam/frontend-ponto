@@ -1,6 +1,6 @@
 export { default as Header } from "./features/Header/Header";
 export { default as Dropdown } from "./features/Dropdown/Dropdown";
-export { default as Senha } from "./commons/Senha/Senha";
+export { default as Senha } from "./features/Senha/Senha";
 export { default as Campo } from "./commons/Campo/Campo";
 export { default as AuthFooter } from "./features/AuthFooter/AuthFooter";
 export { default as Modal } from "./features/Modal/Modal";
@@ -10,3 +10,4 @@ export { default as SearchWithFilters } from "./features/SearchWithFilters/Searc
 export { default as TabelaUsuarios } from "./features/TabelaUsuarios/TabelaUsuarios";
 export { default as TabelaSessoes } from "./features/TabelaSessoes/TabelaSessoes";
 export { default as Tempo } from "./commons/Tempo/Tempo";
+export { default as PerfilDisplay } from "./features/PerfilDisplay/PerfilDisplay";

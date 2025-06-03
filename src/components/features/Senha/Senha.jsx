@@ -5,10 +5,10 @@ import { Campo } from "../..";
 
 const Senha = forwardRef(function Password(props, ref) {
   const [visible, setVisible] = useState(false);
-  const { error, ...rest } = props;
+  const { error, className, ...rest } = props;
 
   return (
-    <Container>
+    <Container className={className}>
       <Campo {...rest} ref={ref} type={visible ? "text" : "password"} error={error} />
       <button className={error ? "lower" : ""} onClick={() => setVisible(!visible)} type='button'>
         {visible ? <FiEyeOff /> : <FiEye />}
