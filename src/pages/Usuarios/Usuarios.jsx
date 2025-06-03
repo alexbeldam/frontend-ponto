@@ -1,7 +1,6 @@
 import { Container } from "./Styles";
 import { useState } from "react";
-import Pesquisa from "./Pesquisa";
-import Tabela from "./Tabela";
+import { SearchWithFilters, TabelaUsuarios } from "../../components";
 
 const defaultFilters = {
   text: "",
@@ -17,8 +16,12 @@ export default function Usuarios() {
   return (
     <Container>
       <h1>GERENCIAR USUARIOS</h1>
-      <Pesquisa filters={filtros} setFilters={setFiltros} defaultFilters={defaultFilters} />
-      <Tabela filters={filtros} />
+      <SearchWithFilters
+        filters={filtros}
+        setFilters={setFiltros}
+        defaultFilters={defaultFilters}
+      />
+      <TabelaUsuarios filters={filtros} />
     </Container>
   );
 }

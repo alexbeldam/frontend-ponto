@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import moment from "moment";
 
 export function useWidth() {
   const [width, setWidth] = useState(() => window.innerWidth);
@@ -13,7 +14,7 @@ export function useWidth() {
   return width;
 }
 
-export function useNow(intervalMs = 5000) {
+export function useNow() {
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -21,12 +22,32 @@ export function useNow(intervalMs = 5000) {
 
     const interval = setInterval(() => {
       setNow(Date.now());
-    }, intervalMs);
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [intervalMs]);
+  }, [5000]);
 
   return now;
+}
+
+export function useDuration(startTime) {
+  const now = useNow();
+  const [durationTime, setDurationTime] = useState();
+
+  function handleHourAndMinuteSide(date, currentTime) {
+    const resultDate = currentTime - new Date(date);
+    const hourFormatted = Math.trunc(moment.duration(resultDate).asHours())
+      .toString()
+      .padStart(2, "0");
+    const minuteFormatted = moment.duration(resultDate).minutes().toString().padStart(2, "0");
+    return `${hourFormatted}:${minuteFormatted}`;
+  }
+
+  useEffect(() => {
+    setDurationTime(handleHourAndMinuteSide(startTime, now));
+  }, [startTime, now]);
+
+  return durationTime;
 }
 
 export function useMediaQuery(query) {
