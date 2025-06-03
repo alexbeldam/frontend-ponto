@@ -32,10 +32,15 @@ export default function EditarModal({ id, nome, cargo }) {
     register,
     reset,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(editValidationSchema) });
+  } = useForm({
+    resolver: zodResolver(editValidationSchema),
+    defaultValues: {
+      cargo,
+    },
+  });
 
   function response(data) {
-    if (data.cargo === null || data.cargo === undefined || data.cargo.trim() === "") {
+    if (data.cargo === cargo) {
       handleCancel();
       reset();
       return;
@@ -59,14 +64,12 @@ export default function EditarModal({ id, nome, cargo }) {
       </EditButton>
 
       <Modal
-        title={`Editar ${nome}`}
+        title={`Editar cargo de ${nome}`}
         open={open}
         onCancel={handleCancel}
         footer={<Botao form='user'>SALVAR</Botao>}
       >
         <ModalContent>
-          <p>Cargo: {cargo}</p>
-
           <form id='user' onSubmit={handleSubmit(response)}>
             <Campo
               type='text'

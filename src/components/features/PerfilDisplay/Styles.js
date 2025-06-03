@@ -43,3 +43,41 @@ export const Display = styled.div`
     }
   }
 `;
+
+export const ModalContent = styled.div`
+  height: 100%;
+  width: 100%;
+
+  p {
+    margin-bottom: 1rem;
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  input {
+    background-color: ${colors.white};
+    border: 1px solid ${colors.black};
+  }
+
+  input,
+  .pass {
+    width: 100%;
+  }
+
+  input,
+  .pass:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  .pass input {
+    margin-bottom: 0;
+  }
+`;
+
+export const ModalContainer = styled.div`
+  span:nth-child(2) {
+    margin-left: 20px;
+  }
+`;

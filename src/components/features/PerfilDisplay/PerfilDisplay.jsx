@@ -1,24 +1,35 @@
-import { Display } from "./Styles";
+import { Display, ModalContainer } from "./Styles";
+import EditarModal from "./EditarModal";
+import SenhaModal from "./SenhaModal";
+import useAuthStore from "../../../stores/auth";
 
-export default function PerfilDisplay({ user }) {
+export default function PerfilDisplay() {
+  const { usuario, setUsuario } = useAuthStore((state) => state);
+
   return (
-    <Display>
-      <table>
-        <tbody>
-          <tr>
-            <td>Nome:</td>
-            <td>{user?.nome || "Fulano"}</td>
-          </tr>
-          <tr>
-            <td>E-mail:</td>
-            <td>{user?.email || "meu@email.com"}</td>
-          </tr>
-          <tr>
-            <td>Cargo:</td>
-            <td>{user?.cargo || "Cargo"}</td>
-          </tr>
-        </tbody>
-      </table>
-    </Display>
+    <div>
+      <Display>
+        <table>
+          <tbody>
+            <tr>
+              <td>Nome:</td>
+              <td>{usuario?.nome || "Fulano"}</td>
+            </tr>
+            <tr>
+              <td>E-mail:</td>
+              <td>{usuario?.email || "meu@email.com"}</td>
+            </tr>
+            <tr>
+              <td>Cargo:</td>
+              <td>{usuario?.cargo || "Cargo"}</td>
+            </tr>
+          </tbody>
+        </table>
+      </Display>
+      <ModalContainer>
+        <EditarModal user={usuario} setUser={setUsuario} />
+        <SenhaModal id={usuario?._id} />
+      </ModalContainer>
+    </div>
   );
 }
