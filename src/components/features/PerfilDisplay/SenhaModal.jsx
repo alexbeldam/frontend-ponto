@@ -23,7 +23,7 @@ export default function SenhaModal({ id }) {
     onSuccess: () => {
       reset();
       toast.success(`Atualizado com sucesso`);
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["usuarios"] });
     },
     onError: (err) => {
       const { data } = err.response;

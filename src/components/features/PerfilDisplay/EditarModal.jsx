@@ -29,7 +29,7 @@ export default function EditarModal({ user, setUser }) {
     onSuccess: () => {
       reset();
       toast.success(`Atualizado com sucesso`);
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["usuarios"] });
     },
     onError: (err) => {
       const { data } = err.response;
